@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TVM — the Valentine Movement token. A community asset built on shared ownership, morale, and the belief that kindness compounds.">
+<title>TVM — The Valentine Movement Token</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1A2233; --paper:#FBF8F2; --crimson:#A8213E; --crimson-deep:#7E1830;
+    --gold:#C29B4A; --muted:#5D6573; --line:#E7E0D4; --white:#FFF;
+    --radius:14px;
+    --shadow-soft:0 2px 6px rgba(26,34,51,.06),0 12px 32px rgba(26,34,51,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Public Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:17px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Fraunces',serif;line-height:1.12;letter-spacing:-.02em}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);font-weight:500}
+  a:focus-visible{outline:3px solid var(--crimson);outline-offset:3px;border-radius:4px}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:16px;padding:15px 30px;border-radius:999px;transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease,box-shadow .18s ease}
+  .btn-solid{background:var(--crimson);color:var(--white);box-shadow:0 6px 18px rgba(168,33,62,.28)}
+  .btn-solid:hover{background:var(--crimson-deep);transform:translateY(-2px)}
+  .btn-solid:active{transform:translateY(0)}
+  .btn-ghost{border:1.5px solid var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+  .btn-ghost:active{transform:translateY(0)}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+  .logo svg{width:24px;height:24px}
+  nav.main{display:flex;gap:26px;align-items:center}
+  nav.main a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500}
+  nav.main a:hover{color:var(--crimson)}
+  nav.main a.here{color:var(--crimson);font-weight:600}
+  nav.main .btn{padding:10px 20px;font-size:14px}
+
+  .hero{padding:76px 0 44px;text-align:center}
+  .hero h1{font-size:clamp(38px,5.2vw,58px);font-weight:600;margin:18px 0 20px}
+  .hero h1 em{font-style:italic;color:var(--crimson)}
+  .hero .lede{font-size:19px;color:var(--muted);max-width:56ch;margin:0 auto}
+
+  .pulse{display:block;margin:0 auto;max-width:520px;width:100%;padding:8px 24px}
+  .pulse path{stroke:var(--crimson);stroke-width:2;fill:none;stroke-dasharray:900;stroke-dashoffset:900;animation:pulse-draw 2.4s ease forwards}
+  @keyframes pulse-draw{to{stroke-dashoffset:0}}
+
+  .creed{padding:40px 0 8px}
+  .creed .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .creed .card{background:var(--white);border:1px solid var(--line);border-top:3px solid var(--crimson);border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow-soft)}
+  .creed h3{font-size:21px;margin-bottom:10px}
+  .creed p{font-size:15.5px;color:var(--muted)}
+
+  .belief{padding:56px 0}
+  .belief .inner{background:var(--ink);color:var(--paper);border-radius:20px;padding:56px 48px;text-align:center}
+  .belief .eyebrow{color:var(--gold)}
+  .belief blockquote{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,32px);font-style:italic;font-weight:400;line-height:1.4;max-width:30ch;margin:18px auto 14px}
+  .belief cite{font-style:normal;font-size:14.5px;color:#B9C0CC}
+
+  .chart{padding:24px 0 56px}
+  .chart h2{font-size:clamp(26px,3.4vw,36px);font-weight:600;margin:12px 0 8px}
+  .chart .sub{color:var(--muted);max-width:60ch;margin-bottom:26px}
+  .frame{position:relative;width:100%;padding-top:62%;min-height:420px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-soft);background:var(--white)}
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .chart .actions{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .contract{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted);word-break:break-all;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:22px}
+  .contract span{display:block;text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--crimson);margin-bottom:6px}
+
+  .note{padding:8px 0 56px}
+  .note .inner{border:1px solid var(--line);border-left:3px solid var(--gold);background:#FFFDF8;border-radius:10px;padding:22px 26px}
+  .note h3{font-family:'Public Sans',sans-serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#8A6A25;margin-bottom:8px}
+  .note p{font-size:14.5px;color:#63594A}
+
+  footer.site{border-top:1px solid var(--line);padding:36px 0 46px}
+  footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  footer.site .fl{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700}
+  footer.site .fl svg{width:20px;height:20px}
+  footer.site .links{display:flex;gap:20px;flex-wrap:wrap}
+  footer.site .links a{color:var(--muted);text-decoration:none;font-size:14.5px}
+  footer.site .links a:hover{color:var(--crimson)}
+  footer.site .credit{width:100%;text-align:center;font-size:13.5px;color:var(--muted);margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  footer.site .credit a{color:var(--crimson);text-decoration:none;font-weight:600}
+  footer.site .credit a:hover{text-decoration:underline}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+  @media (max-width:900px){
+    nav.main{display:none}
+    .creed .grid{grid-template-columns:1fr}
+    .belief .inner{padding:38px 24px}
+    .frame{padding-top:120%}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="The Valentine Movement home">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C7 16.5 3 13 3 8.8 3 6 5.2 4 7.8 4c1.7 0 3.2.9 4.2 2.3C13 4.9 14.5 4 16.2 4 18.8 4 21 6 21 8.8c0 4.2-4 7.7-9 12.2z" fill="#A8213E"/></svg>
+      The Valentine Movement
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="index.html#mission">The Story</a>
+      <a href="index.html#stories">Kindness Stories</a>
+      <a class="here" href="tvm.html">TVM Token</a>
+      <a class="btn btn-solid" href="index.html#partner">Get involved</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">TVM &middot; The Valentine Movement Token</span>
+    <h1>A movement is stronger when the people <em>own a piece of it.</em></h1>
+    <p class="lede">TVM exists for one reason: to give the community around this movement something to hold in common. Not a promise of profit — a symbol of participation, and a reason to keep showing up for each other.</p>
+  </div>
+</section>
+
+<svg class="pulse" viewBox="0 0 520 60" aria-hidden="true">
+  <path d="M0,30 H150 L170,30 180,12 192,48 202,22 210,30 H260 c0,0 -2,-16 12,-16 10,0 12,9 12,9 0,0 2,-9 12,-9 14,0 12,16 12,16 0,10 -14,16 -24,24 -10,-8 -24,-14 -24,-24 M330,30 H520"/>
+</svg>
+
+<section class="creed" aria-label="What TVM stands for">
+  <div class="wrap">
+    <div class="grid">
+      <div class="card">
+        <h3>Shared, not held</h3>
+        <p>The people closest to the work should share in what it creates. That principle built every venture behind this movement, and TVM carries it into the community itself.</p>
+      </div>
+      <div class="card">
+        <h3>Morale you can see</h3>
+        <p>Every movement needs a place where members can feel the momentum. TVM is a visible rallying point — proof that people are showing up, together, in the open.</p>
+      </div>
+      <div class="card">
+        <h3>Built by the team</h3>
+        <p>Kindness scales when a community organizes around it. Holders, volunteers, partners, and storytellers are all building the same thing from different angles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="belief" aria-label="Founding belief">
+  <div class="wrap">
+    <div class="inner">
+      <span class="eyebrow">The conviction underneath it</span>
+      <blockquote>"No man or woman grows rich themselves, unless they enrich the lives of other men and women."</blockquote>
+      <cite>— M.L. "Mickey" Valentine, Founder</cite>
+    </div>
+  </div>
+</section>
+
+<section class="chart" aria-label="TVM market data">
+  <div class="wrap">
+    <span class="eyebrow">Live from Dexscreener</span>
+    <h2>TVM, in the open.</h2>
+    <p class="sub">Transparency is part of the point. Anything happening with the token is public, live, and viewable by anyone in the community — no insider view, no private numbers.</p>
+    <div class="frame">
+      <iframe src="https://dexscreener.com/solana/fwqa2b5kmyvpqhkfagwcc5eqoxxj2i4ewueisbp9sy3f?embed=1&theme=light&info=0&trades=0" title="TVM token live chart on Dexscreener" loading="lazy" allow="clipboard-write" referrerpolicy="no-referrer"></iframe>
+    </div>
+    <div class="actions">
+      <a class="btn btn-solid" href="https://dexscreener.com/solana/fwqa2b5kmyvpqhkfagwcc5eqoxxj2i4ewueisbp9sy3f" target="_blank" rel="noopener">Open full chart on Dexscreener</a>
+      <a class="btn btn-ghost" href="index.html#stories">Read the kindness stories</a>
+    </div>
+    <div class="contract">
+      <span>Pair address (Solana)</span>
+      fwqa2b5kmyvpqhkfagwcc5eqoxxj2i4ewueisbp9sy3f
+    </div>
+  </div>
+</section>
+
+<section class="note" aria-label="Important note">
+  <div class="wrap">
+    <div class="inner">
+      <h3>Please read this part</h3>
+      <p>TVM is a community token. Nothing on this page is financial, investment, tax, or legal advice, and nothing here is an offer to sell or a solicitation to buy. Digital assets are volatile and you can lose everything you put in. Never commit money you cannot afford to lose, do your own research, and speak with a licensed professional before making any financial decision. The Valentine Movement makes no promise or projection of value.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="fl">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C7 16.5 3 13 3 8.8 3 6 5.2 4 7.8 4c1.7 0 3.2.9 4.2 2.3C13 4.9 14.5 4 16.2 4 18.8 4 21 6 21 8.8c0 4.2-4 7.7-9 12.2z" fill="#A8213E"/></svg>
+      The Valentine Movement
+    </div>
+    <nav class="links" aria-label="Footer">
+      <a href="index.html#mission">The Story</a>
+      <a href="index.html#stories">Kindness Stories</a>
+      <a href="index.html#partner">Get Involved</a>
+      <a href="https://x.com/ivalentinebear" target="_blank" rel="noopener">Follow on X</a>
+      <a href="tvm.html">TVM Token</a>
+    </nav>
+    <div class="credit">Designed with <span aria-hidden="true">&#10084;&#65039;</span><span class="sr-only">love</span> by <a href="https://myusalocal.com" target="_blank" rel="noopener">MyUSALocal.com</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
