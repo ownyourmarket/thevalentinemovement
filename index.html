@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Valentine Movement — kindness is not a moment, it's a movement. Share your story, get involved, and help kindness spread.">
+<title>The Valentine Movement — Kindness Is a Movement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1A2233; --paper:#FBF8F2; --crimson:#A8213E; --crimson-deep:#7E1830;
+    --gold:#C29B4A; --muted:#5D6573; --line:#E7E0D4; --white:#FFF;
+    --radius:14px;
+    --shadow-soft:0 2px 6px rgba(26,34,51,.06),0 12px 32px rgba(26,34,51,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Public Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:17px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Fraunces',serif;line-height:1.12;letter-spacing:-.02em}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);font-weight:500}
+  a:focus-visible{outline:3px solid var(--crimson);outline-offset:3px;border-radius:4px}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:16px;padding:15px 30px;border-radius:999px;transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .18s ease,box-shadow .18s ease}
+  .btn-solid{background:var(--crimson);color:var(--white);box-shadow:0 6px 18px rgba(168,33,62,.28)}
+  .btn-solid:hover{background:var(--crimson-deep);transform:translateY(-2px)}
+  .btn-solid:active{transform:translateY(0)}
+  .btn-ghost{border:1.5px solid var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+  .btn-ghost:active{transform:translateY(0)}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+  .logo svg{width:24px;height:24px}
+  nav.main{display:flex;gap:26px;align-items:center}
+  nav.main a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500}
+  nav.main a:hover{color:var(--crimson)}
+  nav.main .btn{padding:10px 20px;font-size:14px}
+
+  .hero{padding:84px 0 64px}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(38px,5.2vw,62px);font-weight:600;margin:18px 0 20px}
+  .hero h1 em{font-style:italic;color:var(--crimson)}
+  .hero .lede{font-size:19px;color:var(--muted);max-width:50ch}
+  .hero-ctas{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero-img{position:relative}
+  .hero-img img{width:100%;border-radius:var(--radius);display:block;box-shadow:var(--shadow-soft)}
+  .hero-img::after{content:"";position:absolute;inset:0;border-radius:var(--radius);background:linear-gradient(to top,rgba(126,24,48,.35),transparent 55%);pointer-events:none}
+
+  .pulse{display:block;margin:0 auto;max-width:520px;width:100%;padding:8px 24px}
+  .pulse path{stroke:var(--crimson);stroke-width:2;fill:none;stroke-dasharray:900;stroke-dashoffset:900;animation:pulse-draw 2.4s ease forwards}
+  @keyframes pulse-draw{to{stroke-dashoffset:0}}
+
+  .mission{padding:64px 0 24px;text-align:center}
+  .mission blockquote{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);font-weight:400;font-style:italic;max-width:34ch;margin:18px auto 10px;line-height:1.4}
+  .mission cite{font-style:normal;font-size:15px;color:var(--muted)}
+
+  .pillars{padding:64px 0}
+  .pillars .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .pillar{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-soft);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:var(--ink);transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease}
+  .pillar:hover{transform:translateY(-4px);box-shadow:0 6px 14px rgba(168,33,62,.10),0 22px 44px rgba(26,34,51,.12)}
+  .pillar img{width:100%;height:170px;object-fit:cover;display:block}
+  .pillar .body{padding:24px 24px 26px}
+  .pillar h3{font-size:21px;margin-bottom:8px}
+  .pillar p{font-size:15px;color:var(--muted)}
+  .pillar .go{margin-top:14px;font-weight:600;font-size:14.5px;color:var(--crimson)}
+
+  .stories{padding:56px 0}
+  .stories .head{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px;gap:20px;flex-wrap:wrap}
+  .stories h2{font-size:clamp(26px,3.4vw,38px);font-weight:600;margin-top:12px}
+  .story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .story{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--crimson);border-radius:10px;padding:24px;box-shadow:var(--shadow-soft)}
+  .story p{font-size:15.5px}
+  .story .who{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .story-featured{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--crimson);border-radius:var(--radius);padding:40px 44px;box-shadow:var(--shadow-soft);margin-bottom:22px}
+  .story-featured .tag{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);display:block;margin-bottom:16px}
+  .story-featured p{font-size:17.5px;margin-bottom:16px;max-width:68ch}
+  .story-featured .kicker{font-family:'Fraunces',serif;font-size:clamp(20px,2.4vw,25px);font-style:italic;line-height:1.4;color:var(--ink);margin:22px 0 18px;max-width:34ch}
+  .story-featured .attrib{display:flex;align-items:center;gap:15px;border-top:1px solid var(--line);padding-top:18px}
+  .story-featured .attrib img{width:58px;height:58px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 2px 10px rgba(26,34,51,.20)}
+  .story-featured .attrib .name{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.6}
+  .story-featured .attrib .name strong{display:block;color:var(--ink);font-weight:600;letter-spacing:.06em}
+  @media (max-width:900px){.story-featured{padding:28px 24px}}
+
+  .band{padding:56px 0}
+  .band .inner{background:var(--ink);color:var(--paper);border-radius:20px;padding:56px 48px;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+  .band .eyebrow{color:var(--gold)}
+  .band h2{font-size:clamp(24px,3.2vw,34px);font-weight:600;margin:12px 0 10px;color:var(--paper)}
+  .band p{color:#B9C0CC;font-size:16px}
+  .band .cta{text-align:right}
+
+  footer.site{border-top:1px solid var(--line);margin-top:48px;padding:36px 0 46px}
+  footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  footer.site .fl{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700}
+  footer.site .fl svg{width:20px;height:20px}
+  footer.site .links{display:flex;gap:20px;flex-wrap:wrap}
+  footer.site .links a{color:var(--muted);text-decoration:none;font-size:14.5px}
+  footer.site .links a:hover{color:var(--crimson)}
+  footer.site .credit{width:100%;text-align:center;font-size:13.5px;color:var(--muted);margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  footer.site .credit a{color:var(--crimson);text-decoration:none;font-weight:600}
+  footer.site .credit a:hover{text-decoration:underline}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+  @media (max-width:900px){
+    nav.main{display:none}
+    .hero .wrap,.band .inner{grid-template-columns:1fr}
+    .pillars .grid,.story-grid{grid-template-columns:1fr}
+    .band .cta{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<header id="top" class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="The Valentine Movement home">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C7 16.5 3 13 3 8.8 3 6 5.2 4 7.8 4c1.7 0 3.2.9 4.2 2.3C13 4.9 14.5 4 16.2 4 18.8 4 21 6 21 8.8c0 4.2-4 7.7-9 12.2z" fill="#A8213E"/></svg>
+      The Valentine Movement
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#mission">The Story</a>
+      <a href="#stories">Kindness Stories</a>
+      <a href="https://dexscreener.com/solana/fwqa2b5kmyvpqhkfagwcc5eqoxxj2i4ewueisbp9sy3f" target="_blank" rel="noopener">TVM Token</a>
+      <a class="btn btn-solid" href="#partner">Get involved</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">A movement of everyday kindness</span>
+      <h1>Kindness is not a moment. It's a <em>movement.</em></h1>
+      <p class="lede">The Valentine Movement exists to prove that one act of kindness never stays one act — it spreads, person to person, until it changes a community. Yours starts here.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#stories">Share your kindness story</a>
+        <a class="btn btn-ghost" href="#partner">Join the movement</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://placehold.co/720x560/F3E2E5/7E1830?text=Movement+photo%0A(coming+from+Sherrie)" alt="Placeholder for a photo of the Valentine Movement community" width="720" height="560">
+    </div>
+  </div>
+</section>
+
+<svg class="pulse" viewBox="0 0 520 60" aria-hidden="true">
+  <path d="M0,30 H150 L170,30 180,12 192,48 202,22 210,30 H260 c0,0 -2,-16 12,-16 10,0 12,9 12,9 0,0 2,-9 12,-9 14,0 12,16 12,16 0,10 -14,16 -24,24 -10,-8 -24,-14 -24,-24 M330,30 H520"/>
+</svg>
+
+<section id="mission" class="mission" aria-label="Mission">
+  <div class="wrap">
+    <span class="eyebrow">Why we exist</span>
+    <blockquote>"No man or woman grows rich themselves, unless they enrich the lives of other men and women."</blockquote>
+    <cite>— M.L. "Mickey" Valentine, Founder</cite>
+  </div>
+</section>
+
+<section class="pillars" aria-label="Ways in">
+  <div class="wrap">
+    <div class="grid">
+      <a class="pillar" href="#mission">
+        <img src="https://placehold.co/640x340/E9D3D8/7E1830?text=Mick+photo" alt="Placeholder portrait of Mickey Valentine" width="640" height="340">
+        <div class="body">
+          <h3>The Story</h3>
+          <p>How one man's conviction about kindness and enrichment became a movement with a name on the door.</p>
+          <div class="go">Read the story &rarr;</div>
+        </div>
+      </a>
+      <a class="pillar" href="#stories">
+        <img src="https://placehold.co/640x340/F3E2E5/A8213E?text=Community+photo" alt="Placeholder photo of community kindness" width="640" height="340">
+        <div class="body">
+          <h3>Kindness Stories</h3>
+          <p>Real acts, told by the people who lived them. Read the wall — then add your own to it.</p>
+          <div class="go">See the stories &rarr;</div>
+        </div>
+      </a>
+      <a class="pillar" href="#partner">
+        <img src="https://placehold.co/640x340/EFE9DD/1A2233?text=Event+photo" alt="Placeholder photo of a movement event" width="640" height="340">
+        <div class="body">
+          <h3>Get Involved</h3>
+          <p>Supporters, partners, and organizers — there's a place in the movement with your name on it.</p>
+          <div class="go">Join in &rarr;</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="stories" class="stories" aria-label="Featured kindness stories">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow">From the community</span>
+        <h2>Kindness, on the record.</h2>
+      </div>
+      <a class="btn btn-ghost" href="mailto:myusalocal@gmail.com?subject=My%20kindness%20story%20%E2%80%94%20The%20Valentine%20Movement">Share yours</a>
+    </div>
+    <div class="story-featured">
+      <span class="tag">Featured story</span>
+      <p>I was in the middle of real financial trouble when Mick reached out. He didn't ask what I needed. He sent money in advance and hired me to work with his company — before I had done a thing to earn it.</p>
+      <p>Then he did the part that mattered more. He taught me. I learned Equitable Equity directly under his mentorship, and it changed the direction of my life.</p>
+      <p>Everything I have built since runs on what I learned from him. Every person who has walked away from a soulless job, every operator who found their footing using the AI-first system I built — none of it exists without one man deciding to help someone he had no obligation to help.</p>
+      <div class="kicker">That's the thing about kindness. It never stops with the person who receives it.</div>
+      <div class="attrib">
+        <img width="58" height="58" alt="Portrait of Star Riley" src="data:image/jpeg;base64,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">
+        <span class="name"><strong>Star Riley</strong>Founder, MyUSA Local</span>
+      </div>
+    </div>
+    <div class="story-grid">
+      <div class="story">
+        <p>"[Kindness story — coming from the community. Share yours and it could be featured here at launch.]"</p>
+        <div class="who">Your story here</div>
+      </div>
+      <div class="story">
+        <p>"[Kindness story — a moment when one small act changed someone's week, or their year.]"</p>
+        <div class="who">Your story here</div>
+      </div>
+      <div class="story">
+        <p>"[Kindness story — because this wall grows every time someone tells the truth about being helped.]"</p>
+        <div class="who">Your story here</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partner" class="band" aria-label="Partner call to action">
+  <div class="wrap">
+    <div class="inner">
+      <div>
+        <span class="eyebrow">For partners &amp; organizations</span>
+        <h2>Put your organization behind the movement.</h2>
+        <p>Businesses, churches, schools, and community groups partner with The Valentine Movement to bring organized kindness where they live and work.</p>
+      </div>
+      <div class="cta">
+        <a class="btn btn-solid" href="mailto:myusalocal@gmail.com?subject=Partner%20inquiry%20%E2%80%94%20The%20Valentine%20Movement">Become a partner</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="fl">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C7 16.5 3 13 3 8.8 3 6 5.2 4 7.8 4c1.7 0 3.2.9 4.2 2.3C13 4.9 14.5 4 16.2 4 18.8 4 21 6 21 8.8c0 4.2-4 7.7-9 12.2z" fill="#A8213E"/></svg>
+      The Valentine Movement
+    </div>
+    <nav class="links" aria-label="Footer">
+      <a href="#mission">The Story</a>
+      <a href="#stories">Kindness Stories</a>
+      <a href="#partner">Get Involved</a>
+      <a href="https://x.com/ivalentinebear" target="_blank" rel="noopener">Follow on X</a>
+      <a href="https://dexscreener.com/solana/fwqa2b5kmyvpqhkfagwcc5eqoxxj2i4ewueisbp9sy3f" target="_blank" rel="noopener">TVM Token</a>
+    </nav>
+    <div class="credit">Designed with <span aria-hidden="true">&#10084;&#65039;</span><span class="sr-only">love</span> by <a href="https://myusalocal.com" target="_blank" rel="noopener">MyUSALocal.com</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
