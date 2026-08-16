@@ -261,7 +261,7 @@
         <span class="eyebrow">From the community</span>
         <h2>Kindness, on the record.</h2>
       </div>
-      <a class="btn btn-ghost" href="#contact" data-prefill="story">Share yours</a>
+      <a class="btn btn-ghost" href="contact.html?about=story">Share yours</a>
     </div>
     <div class="story-featured">
       <span class="tag">Featured story</span>
@@ -276,16 +276,16 @@
     </div>
     <div class="story-grid">
       <div class="story">
-        <p>Somebody did something for you and never asked for anything back. Tell us about it &mdash; this wall is built from stories like that one.</p>
-        <div class="who">Your story here</div>
+        <p>An older man came up a few dollars short at the grocery checkout. The person behind him covered the difference without making anything of it, and the line moved on. That few dollars turned out to be dinner with his grandson that night. He came back later to say so &mdash; the only reason anyone knows how it ended.</p>
+        <div class="who">A few dollars at the register</div>
       </div>
       <div class="story">
-        <p>It doesn&rsquo;t have to be dramatic. A small act that changed somebody&rsquo;s week counts here just as much as one that changed their year.</p>
-        <div class="who">Your story here</div>
+        <p>Two students were sitting out a detention. One noticed the other was drawing and said the sketches were good. That was the whole thing &mdash; one sentence, in a room neither of them wanted to be in. They became friends and stayed friends. He still draws, for a living now, and still tells people where he got the nerve.</p>
+        <div class="who">A compliment in detention</div>
       </div>
       <div class="story">
-        <p>This wall grows every time somebody tells the truth about being helped. Yours could be the one that gets read at exactly the right moment.</p>
-        <div class="who">Your story here</div>
+        <p>On his way into a job interview, a man held the door for an older gentleman, then bent to pick up the notebook he had dropped. He thought nothing of it and went to go wait. The gentleman turned out to be the one doing the interview. He got the job, and stayed fourteen years.</p>
+        <div class="who">The door, and the notebook</div>
       </div>
     </div>
   </div>
@@ -300,52 +300,8 @@
         <p>Businesses, churches, schools, and community groups partner with The Valentine Movement to bring organized kindness where they live and work.</p>
       </div>
       <div class="cta">
-        <a class="btn btn-solid" href="#contact" data-prefill="partner">Become a partner</a>
+        <a class="btn btn-solid" href="contact.html?about=partner">Become a partner</a>
       </div>
-    </div>
-  </div>
-</section>
-<section id="contact" class="contact" aria-label="Contact the movement">
-  <div class="wrap">
-    <div class="card">
-      <span class="eyebrow">Get in touch</span>
-      <h2>Tell us what you want to do.</h2>
-      <p class="sub">Share a kindness story, bring your organization in as a partner, or just ask a question. Somebody reads every one of these.</p>
-
-      <form id="tvm-form" novalidate>
-        <div class="field">
-          <label for="f-type">What&rsquo;s this about?</label>
-          <select id="f-type" name="inquiry_type">
-            <option value="Kindness story">Sharing a kindness story</option>
-            <option value="Partner inquiry">Partnering with the movement</option>
-            <option value="Volunteer">Getting involved as a volunteer</option>
-            <option value="Other">Something else</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-name">Your name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="f-message">Your message</label>
-          <textarea id="f-message" name="message" required></textarea>
-        </div>
-
-        <div class="field" aria-hidden="true" style="position:absolute;left:-9999px">
-          <label for="f-website">Leave this empty</label>
-          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-solid" id="tvm-submit">Send it</button>
-          <span class="form-note">We&rsquo;ll only use this to reply.</span>
-        </div>
-        <p class="form-msg" id="tvm-msg" role="status" aria-live="polite"></p>
-      </form>
     </div>
   </div>
 </section>
@@ -361,7 +317,7 @@
       <a href="#mission">The Story</a>
       <a href="#stories">Kindness Stories</a>
       <a href="#partner">Get Involved</a>
-      <a href="#contact">Contact</a>
+      <a href="contact.html">Contact</a>
       <a href="https://x.com/ivalentinebear" target="_blank" rel="noopener">Follow on X</a>
       <a href="tvm.html">TVM Token</a>
     </nav>
@@ -369,96 +325,5 @@
   </div>
 </footer>
 
-<script>
-/* Contact intake -> uGotLeads.
- * The form ID is the ONLY routing identifier on this page. No recipient email
- * address appears anywhere in the markup, which is the point: addresses in HTML
- * get scraped. Who gets notified (iPower + MyUSA Local) is configured on the
- * form's sub-account in the uGotLeads dashboard, not here.
- *
- * Field ids below must match the field ids on the uGotLeads form exactly:
- *   inquiry_type | name | email | message
- */
-(function () {
-  var CRM_FORM_ID = 'REPLACE_WITH_UGOTLEADS_FORM_ID';
-  var ENDPOINT = 'https://ugotleads.io/api/forms/';
-
-  var form = document.getElementById('tvm-form');
-  var btn = document.getElementById('tvm-submit');
-  var msg = document.getElementById('tvm-msg');
-  if (!form) return;
-
-  function say(text, kind) {
-    msg.textContent = text;
-    msg.className = 'form-msg show ' + kind;
-  }
-
-  // Deep links from the hero and partner band preselect the reason.
-  document.querySelectorAll('[data-prefill]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var map = { story: 'Kindness story', partner: 'Partner inquiry' };
-      var want = map[a.getAttribute('data-prefill')];
-      if (want) document.getElementById('f-type').value = want;
-    });
-  });
-
-  function attribution() {
-    var p = new URLSearchParams(location.search);
-    var out = { landingPage: location.href, referrer: document.referrer || '' };
-    [['utm_source','utmSource'],['utm_medium','utmMedium'],['utm_campaign','utmCampaign'],
-     ['utm_content','utmContent'],['utm_term','utmTerm']].forEach(function (pair) {
-      var v = p.get(pair[0]); if (v) out[pair[1]] = v;
-    });
-    return out;
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    if (document.getElementById('f-website').value) return; // honeypot: silent drop
-
-    var name = document.getElementById('f-name').value.trim();
-    var email = document.getElementById('f-email').value.trim();
-    var message = document.getElementById('f-message').value.trim();
-
-    if (!name || !message) { say('Add your name and a message and we’ll take it from there.', 'err'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('That email doesn’t look right — mind checking it?', 'err'); return; }
-
-    if (CRM_FORM_ID.indexOf('REPLACE_WITH') === 0) {
-      console.warn('[TVM] Contact form is not wired up yet: CRM_FORM_ID is still the placeholder. Create the lead form in the uGotLeads sub-account and paste its id into valentine.html.');
-      say('That didn’t go through. Try once more?', 'err');
-      return;
-    }
-
-    btn.disabled = true;
-    var original = btn.textContent;
-    btn.textContent = 'Sending…';
-
-    fetch(ENDPOINT + CRM_FORM_ID + '/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        values: {
-          name: name,
-          email: email,
-          message: message,
-          inquiry_type: document.getElementById('f-type').value
-        },
-        attribution: attribution()
-      })
-    })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(function () {
-        form.reset();
-        say('Got it — thank you. Somebody will come back to you.', 'ok');
-      })
-      .catch(function (err) {
-        console.warn('[TVM] submit failed', err);
-        say('That didn’t go through. Try once more?', 'err');
-      })
-      .finally(function () { btn.disabled = false; btn.textContent = original; });
-  });
-})();
-</script>
 </body>
 </html>
