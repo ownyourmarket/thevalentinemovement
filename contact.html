@@ -158,40 +158,11 @@
       <h2>Tell us what you want to do.</h2>
       <p class="sub">Share a kindness story, bring your organization in as a partner, or just ask a question. Somebody reads every one of these.</p>
 
-      <form id="tvm-form" novalidate>
-        <div class="field">
-          <label for="f-type">What&rsquo;s this about?</label>
-          <select id="f-type" name="inquiry_type">
-            <option value="Kindness story">Sharing a kindness story</option>
-            <option value="Partner inquiry">Partnering with the movement</option>
-            <option value="Volunteer">Getting involved as a volunteer</option>
-            <option value="Other">Something else</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-name">Your name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="f-message">Your message</label>
-          <textarea id="f-message" name="message" required></textarea>
-        </div>
-
-        <div class="field" aria-hidden="true" style="position:absolute;left:-9999px">
-          <label for="f-website">Leave this empty</label>
-          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-solid" id="tvm-submit">Send it</button>
-          <span class="form-note">We&rsquo;ll only use this to reply.</span>
-        </div>
-        <p class="form-msg" id="tvm-msg" role="status" aria-live="polite"></p>
-      </form>
+      <iframe src="https://app.ugotleads.io/f/iH0uVajtnQyiXLZaBZgp"
+        title="Contact The Valentine Movement"
+        style="width:100%;min-height:760px;border:0;border-radius:10px"
+        loading="lazy"></iframe>
+      <p class="form-note" style="margin-top:10px">We&rsquo;ll only use this to reply.</p>
     </div>
   </div>
 </section>
@@ -215,98 +186,5 @@
   </div>
 </footer>
 
-<script>
-/* Contact intake -> uGotLeads.
- * The form ID is the ONLY routing identifier on this page. No recipient email
- * address appears anywhere in the markup, which is the point: addresses in HTML
- * get scraped. Who gets notified (iPower + MyUSA Local) is configured on the
- * form's sub-account in the uGotLeads dashboard, not here.
- *
- * Field ids below must match the field ids on the uGotLeads form exactly:
- *   inquiry_type | name | email | message
- */
-(function () {
-  var CRM_FORM_ID = 'iH0uVajtnQyiXLZaBZgp';
-  var ENDPOINT = 'https://app.ugotleads.io/api/forms/';
-
-  var form = document.getElementById('tvm-form');
-  var btn = document.getElementById('tvm-submit');
-  var msg = document.getElementById('tvm-msg');
-  if (!form) return;
-
-  function say(text, kind) {
-    msg.textContent = text;
-    msg.className = 'form-msg show ' + kind;
-  }
-
-  // Deep links from the home page preselect the reason: contact.html?about=story
-  (function () {
-    var map = { story: 'Kindness story', partner: 'Partner inquiry', volunteer: 'Volunteer' };
-    var want = map[new URLSearchParams(location.search).get('about')];
-    if (want) document.getElementById('f-type').value = want;
-  })();
-
-  // Bots fill forms instantly; people don't. Anything under 3s is discarded.
-  var loadedAt = Date.now();
-
-  function attribution() {
-    var p = new URLSearchParams(location.search);
-    var out = { landingPage: location.href, referrer: document.referrer || '' };
-    [['utm_source','utmSource'],['utm_medium','utmMedium'],['utm_campaign','utmCampaign'],
-     ['utm_content','utmContent'],['utm_term','utmTerm']].forEach(function (pair) {
-      var v = p.get(pair[0]); if (v) out[pair[1]] = v;
-    });
-    return out;
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    if (document.getElementById('f-website').value) return;   // honeypot: silent drop
-    if (Date.now() - loadedAt < 3000) return;                 // too fast to be human
-
-    var name = document.getElementById('f-name').value.trim();
-    var email = document.getElementById('f-email').value.trim();
-    var message = document.getElementById('f-message').value.trim();
-
-    if (!name || !message) { say('Add your name and a message and we’ll take it from there.', 'err'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('That email doesn’t look right — mind checking it?', 'err'); return; }
-
-    if (CRM_FORM_ID.indexOf('REPLACE_WITH') === 0) {
-      console.warn('[TVM] Contact form is not wired up yet: CRM_FORM_ID is still the placeholder. Create the lead form in the uGotLeads sub-account and paste its id into valentine.html.');
-      say('That didn’t go through. Try once more?', 'err');
-      return;
-    }
-
-    btn.disabled = true;
-    var original = btn.textContent;
-    btn.textContent = 'Sending…';
-
-    fetch(ENDPOINT + CRM_FORM_ID + '/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        values: {
-          name: name,
-          email: email,
-          message: message,
-          inquiry_type: document.getElementById('f-type').value
-        },
-        attribution: attribution()
-      })
-    })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(function () {
-        form.reset();
-        say('Got it — thank you. Somebody will come back to you.', 'ok');
-      })
-      .catch(function (err) {
-        console.warn('[TVM] submit failed', err);
-        say('That didn’t go through. Try once more?', 'err');
-      })
-      .finally(function () { btn.disabled = false; btn.textContent = original; });
-  });
-})();
-</script>
 </body>
 </html>
